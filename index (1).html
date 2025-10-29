@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMARTIBUY — הרילס האחרון / Latest Reel</title>
+  <meta name="description" content="דף שמתעדכן אוטומטית עם הרילס האחרון + לינק קנייה וכניסה לאתר | Auto-updating page with the latest reel, product link, and website CTA." />
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --card: #15151c;
+      --text: #eef0f3;
+      --muted: #97a0af;
+      --accent: #6ee7b7;
+      --accent-2: #60a5fa;
+      --border: rgba(255,255,255,0.12);
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, #142025, transparent 60%), var(--bg);
+      color: var(--text);
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 24px; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      backdrop-filter: saturate(120%) blur(6px);
+    }
+    header { display:flex; align-items:center; justify-content:space-between; gap: 16px; margin-bottom: 18px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
+    h1 { font-size: clamp(20px, 3vw, 28px); margin: 0; }
+    p { color: var(--muted); line-height: 1.6; white-space: pre-wrap; }
+    .lang-toggle { display:flex; gap:8px; align-items:center; }
+    .lang-toggle button {
+      height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: transparent; color: var(--text); cursor: pointer; font-weight: 700;
+    }
+    .lang-toggle button.active {
+      background: var(--accent); color: #0b0b0f; border-color: transparent;
+    }
+    .grid { display:grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 900px){ .grid { grid-template-columns: 1.2fr 0.8fr; } }
+    .embed { position: relative; overflow: hidden; border-radius: 16px; background: #000; min-height: 420px; display:flex; align-items:center; justify-content:center; }
+    .skeleton { width: 100%; height: 420px; background: linear-gradient(90deg, #1c1f2a 25%, #202534 50%, #1c1f2a 75%); background-size: 400% 100%; border-radius: 14px; animation: shimmer 1.6s infinite; }
+    @keyframes shimmer { 0% { background-position: 200% 0;} 100% { background-position: -200% 0; } }
+    .actions { display:grid; grid-template-columns: 1fr; gap: 10px; }
+    @media (min-width: 480px){ .actions { grid-template-columns: 1fr 1fr; } }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; height: 48px; padding: 0 16px; border-radius: 14px; text-decoration:none; color:#0b0b0f; font-weight:700; background: var(--accent); border: 1px solid rgba(0,0,0,0.15); transition: transform .08s ease, box-shadow .2s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(110,231,183,0.22); }
+    .btn.secondary { background: var(--accent-2); box-shadow: 0 6px 18px rgba(96,165,250,0.22); }
+    .btn.ghost { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.14); }
+    .small { font-size: 13px; color: var(--muted); }
+    .badges { display:flex; gap: 8px; flex-wrap: wrap; }
+    .badge { font-size: 12px; color: #0b0b0f; background: #c7f9cc; padding: 6px 10px; border-radius: 999px; }
+    .badge.blue { background:#cfe5ff; }
+    .footer { margin-top: 18px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="brand">
+          <img id="avatar" src="https://smartibuy.com/logo.png" alt="avatar" />
+          <div>
+            <h1 id="title">SMARTIBUY — הרילס האחרון</h1>
+            <div class="badges">
+              <span class="badge" id="platform-badge">Instagram</span>
+              <span class="badge blue" id="updated-badge">מתעדכן בזמן אמת</span>
+            </div>
+          </div>
+        </div>
+        <div class="lang-toggle">
+          <button id="btn-he" class="active" aria-pressed="true">🇮🇱 עברית</button>
+          <button id="btn-en" aria-pressed="false">🇬🇧 English</button>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section>
+          <div class="embed" id="embed"><div class="skeleton"></div></div>
+          <p id="caption" style="margin-top:12px;"></p>
+        </section>
+
+        <aside>
+          <div class="actions">
+            <a id="aliBtn" class="btn" href="#" target="_blank" rel="nofollow noopener">קנייה באליאקספרס</a>
+            <a id="siteBtn" class="btn secondary" href="https://smartibuy.com" target="_blank" rel="noopener">כניסה לאתר שלי</a>
+            <a id="igBtn" class="btn ghost" href="https://www.instagram.com/smartibuy.coms/" target="_blank" rel="noopener">עקבו אחרי באינסטגרם</a>
+          </div>
+          <p class="small" id="helper-text">הדף מתעדכן אוטומטית בכל פעם שעולה רילס חדש. אפשר לשתף אותו בסטורי/ביו.</p>
+        </aside>
+      </div>
+
+      <div class="footer small">
+        <span id="ts" data-time="">עודכן: —</span>
+        <span id="powered">⚡️ מופעל ע\"י קובץ latest.json</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = (s)=>document.querySelector(s);
+
+    // תרגומים
+    const I18N = {
+      he: {
+        title: "SMARTIBUY — הרילס האחרון",
+        platformUpdated: "מתעדכן בזמן אמת",
+        ali: "קנייה באליאקספרס",
+        site: "כניסה לאתר שלי",
+        ig: "עקבו אחרי באינסטגרם",
+        helper: "הדף מתעדכן אוטומטית בכל פעם שעולה רילס חדש. אפשר לשתף אותו בסטורי/ביו.",
+        updated: "עודכן: ",
+        powered: '⚡️ מופעל ע"י קובץ latest.json',
+        loading: "טוען רילס..."
+      },
+      en: {
+        title: "SMARTIBUY — Latest Reel",
+        platformUpdated: "Real-time updates",
+        ali: "Buy on AliExpress",
+        site: "Visit my website",
+        ig: "Follow me on Instagram",
+        helper: "This page auto-updates whenever a new reel is posted. Share it in your bio/story.",
+        updated: "Updated: ",
+        powered: "⚡️ Powered by latest.json",
+        loading: "Loading reel..."
+      }
+    };
+
+    // שפה ראשונית מהעדפת דפדפן או מה-localStorage
+    let lang = localStorage.getItem('lang') ||
+               ((navigator.language||'he').toLowerCase().startsWith('en') ? 'en' : 'he');
+
+    const JSON_URL = 'latest.json';
+    const DEFAULTS = {
+      site_url: 'https://smartibuy.com',
+      instagram_profile: 'https://www.instagram.com/smartibuy.coms/'
+    };
+
+    function withUTM(url, source){
+      try{
+        const u = new URL(url);
+        u.searchParams.set('utm_source', source);
+        u.searchParams.set('utm_medium', 'smart-reels-page');
+        u.searchParams.set('utm_campaign', 'latest-reel');
+        return u.toString();
+      }catch(e){ return url; }
+    }
+
+    function setLang(newLang){
+      lang = newLang;
+      localStorage.setItem('lang', lang);
+      applyLang();
+      // כיוון טקסט
+      const isHe = lang === 'he';
+      document.documentElement.lang = isHe ? 'he' : 'en';
+      document.documentElement.dir = isHe ? 'rtl' : 'ltr';
+      // כפתורים
+      qs('#btn-he').classList.toggle('active', isHe);
+      qs('#btn-en').classList.toggle('active', !isHe);
+      qs('#btn-he').setAttribute('aria-pressed', isHe ? 'true' : 'false');
+      qs('#btn-en').setAttribute('aria-pressed', !isHe ? 'true' : 'false');
+      // תאריך מוצג מחדש בפורמט מתאים
+      const tsRaw = qs('#ts').dataset.timeRaw;
+      if (tsRaw) {
+        const formatted = new Date(tsRaw).toLocaleString(isHe ? 'he-IL' : 'en-US');
+        qs('#ts').textContent = I18N[lang].updated + formatted;
+      }
+    }
+
+    function applyLang(){
+      const t = I18N[lang];
+      qs('#title').textContent = t.title;
+      qs('#updated-badge').textContent = t.platformUpdated;
+      qs('#aliBtn').textContent = t.ali;
+      qs('#siteBtn').textContent = t.site;
+      qs('#igBtn').textContent = t.ig;
+      qs('#helper-text').textContent = t.helper;
+      qs('#powered').textContent = t.powered;
+      // אם אין הטמעה עדיין – טקסט טעינה
+      if(qs('#embed').children.length === 0){
+        qs('#embed').textContent = t.loading;
+      }
+    }
+
+    qs('#btn-he').addEventListener('click', ()=> setLang('he'));
+    qs('#btn-en').addEventListener('click', ()=> setLang('en'));
+
+    async function init(){
+      applyLang();
+      try{
+        const res = await fetch(JSON_URL + '?v=' + Date.now());
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        hydrate(data);
+      }catch(err){
+        console.error('latest.json load failed', err);
+        qs('#embed').textContent = I18N[lang].loading;
+      }
+    }
+
+    function hydrate(data){
+      // ברירות מחדל
+      data.site_url = data.site_url || DEFAULTS.site_url;
+      data.instagram_profile = data.instagram_profile || DEFAULTS.instagram_profile;
+
+      // קישורים
+      if(data.ali_link) qs('#aliBtn').href = withUTM(data.ali_link, 'aliexpress');
+      if(data.site_url) qs('#siteBtn').href = withUTM(data.site_url, 'website');
+      if(data.instagram_profile) qs('#igBtn').href = data.instagram_profile;
+      if(data.avatar) qs('#avatar').src = data.avatar;
+
+      // כיתוב דו-לשוני: caption_he / caption_en, ואם אין — fallback ל-caption
+      const cap = (lang === 'he' ? (data.caption_he || data.caption) : (data.caption_en || data.caption)) || '';
+      qs('#caption').textContent = cap;
+
+      // זמן
+      if(data.updated_at){
+        qs('#ts').dataset.timeRaw = data.updated_at;
+        const formatted = new Date(data.updated_at).toLocaleString(lang === 'he' ? 'he-IL' : 'en-US');
+        qs('#ts').textContent = I18N[lang].updated + formatted;
+      }
+
+      // הטמעה
+      const embed = qs('#embed');
+      embed.innerHTML = '';
+      if(data.instagram_url){
+        const block = document.createElement('blockquote');
+        block.className = 'instagram-media';
+        block.setAttribute('data-instgrm-permalink', data.instagram_url);
+        block.setAttribute('data-instgrm-captioned', '');
+        block.style.background = '#000';
+        embed.appendChild(block);
+        loadInstagramSDK();
+      } else if (data.facebook_url){
+        // אופציונלי: הטמעת FB אם תרצה בעתיד
+        embed.textContent = (lang === 'he') ? 'הטמעת פייסבוק לא הופעלה בדף זה.' : 'Facebook embed is not enabled on this page.';
+      } else {
+        embed.textContent = (lang === 'he') ? 'לא הוגדרה כתובת רילס.' : 'No reel URL provided.';
+      }
+    }
+
+    function loadInstagramSDK(){
+      if(window.instgrm){ window.instgrm.Embeds.process(); return; }
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.instagram.com/embed.js';
+      s.onload = ()=> window.instgrm && window.instgrm.Embeds && window.instgrm.Embeds.process();
+      document.body.appendChild(s);
+    }
+
+    // אתחול
+    setLang(lang);
+    init();
+  </script>
+</body>
+</html>
