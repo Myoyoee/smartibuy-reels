@@ -1,12 +1,35 @@
 {
-  "title": "SMARTIBUY — הרילס האחרון",
-  "caption": "",
-  "instagram_url": "",
-  "facebook_url": "",
+  "title": "SMARTIBUY — Reels Carousel (up to 400)",
   "instagram_profile": "https://www.instagram.com/smartibuy.coms/",
-  "facebook_page": "https://www.facebook.com/profile.php?id=61576263943714",
-  "ali_link": "",
   "site_url": "https://smartibuy.com",
   "avatar": "https://smartibuy.com/logo.png",
-  "updated_at": ""
+  "posts": [
+    {
+      "id": "reel-1",
+      "instagram_url": "https://www.instagram.com/reel/XXXXXXXX1/",
+      "caption_he": "תיאור בעברית לרילס #1…",
+      "caption_en": "English caption for reel #1…",
+      "ali_link": "https://s.click.aliexpress.com/e/your-affiliate-link-1",
+      "site_url": "https://smartibuy.com/products/example-1",
+      "updated_at": "2025-10-25T10:00:00Z"
+    },
+    {
+      "id": "reel-2",
+      "instagram_url": "https://www.instagram.com/reel/XXXXXXXX2/",
+      "caption_he": "תיאור בעברית לרילס #2…",
+      "caption_en": "English caption for reel #2…",
+      "ali_link": "https://s.click.aliexpress.com/e/your-affiliate-link-2",
+      "site_url": "https://smartibuy.com/products/example-2",
+      "updated_at": "2025-10-24T18:30:00Z"
+    },
+    {
+      "id": "reel-3",
+      "instagram_url": "https://www.instagram.com/reel/XXXXXXXX3/",
+      "caption_he": "תיאור בעברית לרילס #3…",
+      "caption_en": "English caption for reel #3…",
+      "ali_link": "https://s.click.aliexpress.com/e/your-affiliate-link-3",
+      "site_url": "https://smartibuy.com/products/example-3",
+      "updated_at": "2025-10-22T08:15:00Z"
+    }
+  ]
 }
